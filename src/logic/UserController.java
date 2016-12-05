@@ -1,18 +1,11 @@
 package logic;
 
-import shared.LectureDTO;
-import shared.Logging;
-import shared.ReviewDTO;
-
-import java.sql.Timestamp;
-import java.util.ArrayList;
-
 import service.DBWrapper;
-import shared.CourseDTO;
-import shared.UserDTO;
+import shared.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -98,7 +91,7 @@ public class UserController {
 
                 lecture.setStartDate(rs.getTimestamp("start"));
                 lecture.setEndDate(rs.getTimestamp("end"));
-                //lecture.setId(rs.getInt("id"));
+                lecture.setId(rs.getInt("id"));
                 lecture.setType(rs.getString("type"));
                 lecture.setDescription(rs.getString("description"));
 

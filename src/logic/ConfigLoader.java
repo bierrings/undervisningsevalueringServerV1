@@ -1,14 +1,11 @@
 package logic;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-import com.sun.deploy.config.Config;
 
 import java.io.FileReader;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -55,7 +52,7 @@ public class ConfigLoader {
         JsonReader jsonReader;
 
         try {
-            jsonReader = new JsonReader(new FileReader("config.json")); //opretter metode til at læse den lokale config.Json-fil.
+            jsonReader = new JsonReader(new FileReader("config.dist.json")); //opretter metode til at læse den lokale config.Json-fil.
             JsonObject jsonObject = jparser.parse(jsonReader).getAsJsonObject(); //opretter et objekt af config.Json-filen.
 
             Set<Map.Entry<String, JsonElement>> entries = jsonObject.entrySet();//retunerer værdierne af objektet

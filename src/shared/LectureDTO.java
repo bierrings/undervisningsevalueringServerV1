@@ -1,8 +1,7 @@
 package shared;
 
-import java.util.Date;
-import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class LectureDTO {
@@ -35,6 +34,9 @@ public class LectureDTO {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
 
     public int getLectureId() {

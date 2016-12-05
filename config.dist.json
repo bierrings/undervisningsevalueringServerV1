@@ -4,7 +4,7 @@
     "DB_PORT":"3306",
     "DB_NAME":"project_eva",
     "DB_USER":"root",
-    "DB_PASS":"YOUR PASSWORD",
+    "DB_PASS":"",
     "CBS_API_LINK":"https://calendar.cbs.dk/events.php?format=json&groups=",
     "COURSES_JSON":"resources/courses.json",
     "STUDY_DATA_JSON": "resources/study_data.json",

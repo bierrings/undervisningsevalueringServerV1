@@ -73,21 +73,6 @@ public class UserEndpoint {
         }
     }
 
-    @POST
- //   @Consumes("application/json")
-    @Path("/login")
-    public Response login(String data) {
-
-        Gson gson = new Gson();
-        UserDTO user = new Gson().fromJson(data, UserDTO.class);
-        UserController userCtrl = new UserController();
-
-        if (user != null) {
-            return successResponse(200, userCtrl.login(user.getCbsMail(), user.getPassword()));
-        } else {
-            return errorResponse(401, "Couldn't login. Try again!");
-        }
-    }
 
     @OPTIONS
     @Path("/login")
@@ -120,6 +105,23 @@ public class UserEndpoint {
                 .build();
 
     }
+
+    @POST
+    //   @Consumes("application/json")
+    @Path("/login")
+    public Response login(String data) {
+
+        Gson gson = new Gson();
+        UserDTO user = new Gson().fromJson(data, UserDTO.class);
+        UserController userCtrl = new UserController();
+
+        if (user != null) {
+            return successResponse(200, userCtrl.login(user.getCbsMail(), user.getPassword()));
+        } else {
+            return errorResponse(401, "Couldn't login. Try again!");
+        }
+    }
+
 
 
     protected Response errorResponse(int status, String message) {
