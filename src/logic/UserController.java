@@ -51,7 +51,7 @@ public class UserController {
 
         try {
             Map<String, String> params = new HashMap();
-            params.put("id", String.valueOf(lectureId));
+            params.put("lecture_id", String.valueOf(lectureId));
             params.put("is_deleted", "0");
             String[] attributes = {"id", "user_id", "lecture_id", "rating", "comment"};
 
