@@ -18,7 +18,6 @@ public class StudentController extends UserController {
 
     /*
     public static void main(String[] args) {
-
         StudentController controller = new StudentController();
         controller.addReview(new ReviewDTO(1, 1, 1, "1", true));
     }
@@ -51,7 +50,7 @@ public class StudentController extends UserController {
         return isAdded;
     }
 
-    public boolean softDeleteReview(int userId, int reviewId) {
+    public boolean softDeleteReview(int reviewId) {
         boolean isSoftDeleted = true;
 
         try {
@@ -61,7 +60,7 @@ public class StudentController extends UserController {
 
             Map<String, String> params = new HashMap();
             params.put("id", String.valueOf(reviewId));
-            params.put("user_id", String.valueOf(userId));
+
 
             DBWrapper.updateRecords("review", isDeleted, params);
             return isSoftDeleted;

@@ -49,7 +49,7 @@ public class Digester {
 
         return Digester._hash(str);
     }
-    //konventerer hashværdien til hexidecimaler
+    //konventerer hashværdien tilda hexidecimaler
     private static String _hash(String str){
         digester.update(str.getBytes());
         byte[] hash = digester.digest();

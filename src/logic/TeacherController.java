@@ -1,8 +1,13 @@
 package logic;
 
+import service.DBWrapper;
 import shared.LectureDTO;
 import shared.ReviewDTO;
 import shared.TeacherDTO;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TeacherController extends UserController {
 
@@ -55,5 +60,27 @@ public class TeacherController extends UserController {
         double average = sumOfRatings / numberOfReviews;
 
         return average;
+    }
+
+    public boolean softDeleteReview(int reviewId) {
+        boolean isSoftDeleted = true;
+
+        try {
+            Map<String, String> isDeleted = new HashMap();
+
+            isDeleted.put("is_deleted", "1");
+
+            Map<String, String> params = new HashMap();
+            params.put("id", String.valueOf(reviewId));
+
+
+            DBWrapper.updateRecords("review", isDeleted, params);
+            return isSoftDeleted;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            isSoftDeleted = false;
+        }
+        return isSoftDeleted;
     }
 }

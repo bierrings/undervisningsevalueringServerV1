@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 public class StudentEndpoint extends UserEndpoint {
 
     @POST
-    @Consumes("application/json")
+    //@Consumes("application/json")
     @Path("/review")
     public Response addReview(String json) {
 
@@ -36,16 +36,37 @@ public class StudentEndpoint extends UserEndpoint {
         }
     }
 
+    @OPTIONS
+    @Path("/review")
+    public Response optionsReview() {
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "Content-Type")
+                .build();
+    }
+
+    @OPTIONS
+    @Path("/deletereview")
+    public Response deleteReview() {
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "Content-Type")
+                .header("Access-Control-Allow-Methods","GET,PUT,POST,DELETE")
+                .build();
+    }
+
     @DELETE
     @Consumes("application/json")
-    @Path("/review/")
+    @Path("/deletereview")
     public Response deleteReview(String data) {
         Gson gson = new Gson();
 
         ReviewDTO review = gson.fromJson(data, ReviewDTO.class);
         StudentController studentCtrl = new StudentController();
 
-        boolean isDeleted = studentCtrl.softDeleteReview(review.getUserId(), review.getId());
+        boolean isDeleted = studentCtrl.softDeleteReview(review.getId());
 
         if (isDeleted) {
             String toJson = gson.toJson(Digester.encrypt(gson.toJson(isDeleted)));

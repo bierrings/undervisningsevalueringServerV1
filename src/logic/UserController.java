@@ -28,11 +28,12 @@ public class UserController {
             params.put("cbs_mail", String.valueOf(cbs_email));
             params.put("password", String.valueOf(password));
 
-            String[] attributes = {"id"};
+            String[] attributes = {"id", "type"};
             ResultSet rs = DBWrapper.getRecords("user", attributes, params, null, 0);
 
             while (rs.next()) {
                 user.setId(rs.getInt("id"));
+                user.setType(rs.getString("type"));
                 System.out.print("User found");
                 return user;
             }
@@ -52,6 +53,35 @@ public class UserController {
         try {
             Map<String, String> params = new HashMap();
             params.put("lecture_id", String.valueOf(lectureId));
+            params.put("is_deleted", "0");
+            String[] attributes = {"id", "user_id", "lecture_id", "rating", "comment"};
+
+            ResultSet rs = DBWrapper.getRecords("review", attributes, params, null, 0);
+
+            while (rs.next()) {
+                ReviewDTO review = new ReviewDTO();
+                review.setId(rs.getInt("id"));
+                review.setUserId(rs.getInt("user_id"));
+                review.setLectureId(rs.getInt("lecture_id"));
+                review.setRating(rs.getInt("rating"));
+                review.setComment(rs.getString("comment"));
+
+                reviews.add(review);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Logging.log(e,2,"Kunne ikke hente getReviews");
+        }
+        return reviews;
+    }
+    public ArrayList<ReviewDTO> getUserReviews(int userId) {
+
+        ArrayList<ReviewDTO> reviews = new ArrayList<ReviewDTO>();
+
+        try {
+            Map<String, String> params = new HashMap();
+            params.put("user_id", String.valueOf(userId));
             params.put("is_deleted", "0");
             String[] attributes = {"id", "user_id", "lecture_id", "rating", "comment"};
 
@@ -102,7 +132,7 @@ public class UserController {
         }
         catch (SQLException e){
             e.printStackTrace();
-        Logging.log(e,2,"Kunne ikke hente getLecture");
+            Logging.log(e,2,"Kunne ikke hente getLecture");
 
         }
         return lectures;

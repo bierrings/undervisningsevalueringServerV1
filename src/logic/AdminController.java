@@ -81,7 +81,7 @@ public class AdminController extends UserController {
          */
 
         UserController u = new UserController();
-        u.softDeleteReview(0, idReviewChoice);
+        u.softDeleteReview(0,idReviewChoice);
 
         TUIAdminMenu tuiAdminMenu = new TUIAdminMenu();
         tuiAdminMenu.menu(adminDTO);
@@ -98,7 +98,7 @@ public class AdminController extends UserController {
          */
         for (UserDTO user : getUsers())
         {
-            System.out.println("Id: " + user.getId() + " Type: " + user.getType() + "  CBS mail: " + user.getCbsMail());
+            System.out.println("Id: " + user.getId() +  " Type: " + user.getType() + "  CBS mail: " + user.getCbsMail()) ;
         }
 
         //spørg efter id der skal slettes
@@ -110,7 +110,7 @@ public class AdminController extends UserController {
          * Her slettes brugeren fra databasen ved hjælp af den id som der er blevet skrevet ind af admin.
          */
 
-        try {
+        try{
             Map<String, String> course_attendant = new HashMap<String, String>();
 
             course_attendant.put("user_id", String.valueOf(userIdDelete));
@@ -126,7 +126,7 @@ public class AdminController extends UserController {
             TUIAdminMenu tuiAdminMenu = new TUIAdminMenu();
             tuiAdminMenu.menu(adminDTO);
 
-        } catch (SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
             Logging.log(e, 1, "Brugeren kunne ikke slettes" + "\n");
         }
@@ -184,11 +184,11 @@ public class AdminController extends UserController {
         }
     }
 
-    public void courseAssign(AdminDTO adminDTO) {
+    public void courseAssign (AdminDTO adminDTO){
 
         for (UserDTO user : getUsers())
         {
-            System.out.println("Id: " + user.getId() + " Type: " + user.getType() + "  CBS mail: " + user.getCbsMail());
+            System.out.println("Id: " + user.getId() +  " Type: " + user.getType() + "  CBS mail: " + user.getCbsMail()) ;
         }
 
         Scanner input = new Scanner(System.in);
@@ -199,8 +199,8 @@ public class AdminController extends UserController {
          * Dette er en foreach løkke som printer alle lectures ud med tilhørende id
          **/
 
-        for (StudyDTO studyDTO : getStudies()) {
-            System.out.println("id: " + studyDTO.getId() + " - forkortelse: " + studyDTO.getShortname() + " - name: " + studyDTO.getName());
+        for (StudyDTO studyDTO: getStudies()){
+            System.out.println("id: " + studyDTO.getId() + " - forkortelse: " + studyDTO.getShortname() + " - name: " + studyDTO.getName() );
         }
 
         Scanner input1 = new Scanner(System.in);
@@ -226,7 +226,7 @@ public class AdminController extends UserController {
 
     }
 
-    public ArrayList<CourseDTO> getCourseStudy(int idStudyChoice) {
+    public ArrayList<CourseDTO> getCourseStudy(int idStudyChoice){
         ArrayList<CourseDTO> courses = new ArrayList<CourseDTO>();
 
         try {
@@ -245,9 +245,10 @@ public class AdminController extends UserController {
 
                 courses.add(courses1);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e){
             e.printStackTrace();
-            Logging.log(e, 2, "Kunne ikke hente getCouses");
+            Logging.log(e,2,"Kunne ikke hente getCouses");
 
         }
         return courses;
@@ -317,7 +318,7 @@ public class AdminController extends UserController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            Logging.log(e, 2, "Kunne ikke hente getCourses");
+            Logging.log(e,2,"Kunne ikke hente getCourses");
         }
         return courses;
     }
@@ -343,9 +344,10 @@ public class AdminController extends UserController {
 
                 lectures.add(lecture);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e){
             e.printStackTrace();
-            Logging.log(e, 2, "Kunne ikke hente getLecture");
+            Logging.log(e,2,"Kunne ikke hente getLecture");
 
 
         }
@@ -404,7 +406,7 @@ public class AdminController extends UserController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            Logging.log(e, 2, "Kunne ikke hente Studies");
+            Logging.log(e,2,"Kunne ikke hente Studies");
         }
         return studies;
     }
