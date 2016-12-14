@@ -6,9 +6,9 @@ import security.Digester;
 import shared.AdminDTO;
 import shared.UserDTO;
 
-import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 
 /**
  * TUIMainMenu er til den første menu som admin ser inden der logges ind.

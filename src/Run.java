@@ -1,19 +1,13 @@
 //TODO: Mangler dokumentation.
-import com.google.gson.Gson;
+
 import com.sun.jersey.api.container.httpserver.HttpServerFactory;
 import com.sun.net.httpserver.HttpServer;
-import java.io.IOException;
-
-import logic.CBSParser;
 import logic.ConfigLoader;
-import logic.MainController;
-import logic.UserController;
 import shared.AdminDTO;
 import shared.Logging;
-import shared.UserDTO;
 import view.TUIMainMenu;
 
-import javax.ws.rs.*;
+import java.io.IOException;
 import java.io.PrintStream;
 
 //TODO: Missing documentation and use of config variables.
@@ -31,7 +25,7 @@ public class Run {
             System.setOut(null);
             server = HttpServerFactory.create("http://" + ConfigLoader.SERVER_ADDRESS + ":" + ConfigLoader.SERVER_PORT + "/");
             System.setOut(stdout);
-        }catch(ArrayIndexOutOfBoundsException a){
+        } catch (ArrayIndexOutOfBoundsException a) {
             Logging.log(a, 3, "Fejl. Sysem startede ikke!");
             System.exit(20);
         }
